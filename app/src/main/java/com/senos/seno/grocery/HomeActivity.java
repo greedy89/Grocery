@@ -82,15 +82,16 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
             Intent inten = new Intent(HomeActivity.this,Main2Activity.class);
             startActivity(inten);
         } else if (id == R.id.nav_gallery) {
-
+            Intent inten  = new Intent (HomeActivity.this,ListBarang.class);
+            startActivity(inten);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-
+            Intent inten = new Intent(HomeActivity.this,TambahBarang.class);
+            startActivity(inten);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

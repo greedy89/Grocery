@@ -33,7 +33,7 @@ public class ApiClient {
         gsonBuilder.registerTypeAdapter(String.class, new StringCoverter());
         Gson gson = gsonBuilder.create();
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.137.1:8080/grocery/")
+                .baseUrl("http://192.168.1.104:80/cicool/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();

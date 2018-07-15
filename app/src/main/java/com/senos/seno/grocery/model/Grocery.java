@@ -14,18 +14,18 @@ public class Grocery implements Serializable, Parcelable
     @SerializedName("id")
     @Expose
     private String id;
-    @SerializedName("barcode")
+    @SerializedName("codebarcode")
     @Expose
-    private String barcode;
-    @SerializedName("namaBarang")
+    private String codebarcode;
+    @SerializedName("namabarang")
     @Expose
-    private String namaBarang;
-    @SerializedName("hargaBeli")
+    private String namabarang;
+    @SerializedName("hargabarang")
     @Expose
-    private String hargaBeli;
-    @SerializedName("hargaJual")
+    private String hargabarang;
+    @SerializedName("hargabeli")
     @Expose
-    private String hargaJual;
+    private String hargabeli;
     public final static Parcelable.Creator<Grocery> CREATOR = new Creator<Grocery>() {
 
 
@@ -42,38 +42,17 @@ public class Grocery implements Serializable, Parcelable
 
     }
     ;
-    private final static long serialVersionUID = 8428681302422100779L;
+    private final static long serialVersionUID = -882527037861972779L;
 
     protected Grocery(Parcel in) {
         this.id = ((String) in.readValue((String.class.getClassLoader())));
-        this.barcode = ((String) in.readValue((String.class.getClassLoader())));
-        this.namaBarang = ((String) in.readValue((String.class.getClassLoader())));
-        this.hargaBeli = ((String) in.readValue((String.class.getClassLoader())));
-        this.hargaJual = ((String) in.readValue((String.class.getClassLoader())));
+        this.codebarcode = ((String) in.readValue((String.class.getClassLoader())));
+        this.namabarang = ((String) in.readValue((String.class.getClassLoader())));
+        this.hargabarang = ((String) in.readValue((String.class.getClassLoader())));
+        this.hargabeli = ((String) in.readValue((String.class.getClassLoader())));
     }
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
     public Grocery() {
-    }
-
-    /**
-     * 
-     * @param id
-     * @param barcode
-     * @param hargaJual
-     * @param namaBarang
-     * @param hargaBeli
-     */
-    public Grocery(String id, String barcode, String namaBarang, String hargaBeli, String hargaJual) {
-        super();
-        this.id = id;
-        this.barcode = barcode;
-        this.namaBarang = namaBarang;
-        this.hargaBeli = hargaBeli;
-        this.hargaJual = hargaJual;
     }
 
     public String getId() {
@@ -84,69 +63,44 @@ public class Grocery implements Serializable, Parcelable
         this.id = id;
     }
 
-    public Grocery withId(String id) {
-        this.id = id;
-        return this;
+    public String getCodebarcode() {
+        return codebarcode;
     }
 
-    public String getBarcode() {
-        return barcode;
+    public void setCodebarcode(String codebarcode) {
+        this.codebarcode = codebarcode;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
+    public String getNamabarang() {
+        return namabarang;
     }
 
-    public Grocery withBarcode(String barcode) {
-        this.barcode = barcode;
-        return this;
+    public void setNamabarang(String namabarang) {
+        this.namabarang = namabarang;
     }
 
-    public String getNamaBarang() {
-        return namaBarang;
+    public String getHargabarang() {
+        return hargabarang;
     }
 
-    public void setNamaBarang(String namaBarang) {
-        this.namaBarang = namaBarang;
+    public void setHargabarang(String hargabarang) {
+        this.hargabarang = hargabarang;
     }
 
-    public Grocery withNamaBarang(String namaBarang) {
-        this.namaBarang = namaBarang;
-        return this;
+    public String getHargabeli() {
+        return hargabeli;
     }
 
-    public String getHargaBeli() {
-        return hargaBeli;
-    }
-
-    public void setHargaBeli(String hargaBeli) {
-        this.hargaBeli = hargaBeli;
-    }
-
-    public Grocery withHargaBeli(String hargaBeli) {
-        this.hargaBeli = hargaBeli;
-        return this;
-    }
-
-    public String getHargaJual() {
-        return hargaJual;
-    }
-
-    public void setHargaJual(String hargaJual) {
-        this.hargaJual = hargaJual;
-    }
-
-    public Grocery withHargaJual(String hargaJual) {
-        this.hargaJual = hargaJual;
-        return this;
+    public void setHargabeli(String hargabeli) {
+        this.hargabeli = hargabeli;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
-        dest.writeValue(barcode);
-        dest.writeValue(namaBarang);
-        dest.writeValue(hargaBeli);
-        dest.writeValue(hargaJual);
+        dest.writeValue(codebarcode);
+        dest.writeValue(namabarang);
+        dest.writeValue(hargabarang);
+        dest.writeValue(hargabeli);
     }
 
     public int describeContents() {
