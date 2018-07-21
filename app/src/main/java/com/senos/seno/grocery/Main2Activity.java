@@ -26,6 +26,7 @@ public class Main2Activity extends AppCompatActivity implements ZBarScannerView.
         ViewGroup contentpanel = (ViewGroup)findViewById(R.id.contentPanel);
         contentpanel.addView(mScannerView);
 
+
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
