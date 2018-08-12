@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void scanBarcode(View view) {
-        Intent n = new Intent (MainActivity.this,Main2Activity.class);
+        Intent n = new Intent (MainActivity.this,ScanForFindBarang.class);
+        n.putExtra("flag","cariBarang");
         startActivity(n);
     }
 

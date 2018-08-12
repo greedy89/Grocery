@@ -8,50 +8,122 @@
     android:padding="15dp"
     tools:context=".TambahBarang">
 
-    <EditText
-        android:id="@+id/etCodeBarcode"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_gravity="center"
-        android:hint="Code Barcode"
-        android:inputType="textPersonName"
-        android:onClick="scanBarcode" />
+        android:textSize="@dimen/titleColumSize"
+        android:text="Nomer barcode" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etCodeBarcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Code Barcode"
+            android:inputType="textPersonName"
+            android:onClick="scanBarcode" />
+
+        <Button
+            android:id="@+id/tblAddBarcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ambil\nBarcode"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/titleColumSize"
+        android:layout_marginTop="@dimen/marginElementEdittext"
+        android:text="Nama Barang" />
 
     <EditText
-        android:layout_marginTop="@dimen/marginElementEdittext"
         android:id="@+id/etNamaBarang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:ems="10"
         android:hint="Nama Barang"
         android:inputType="textNoSuggestions|textPersonName" />
 
-    <EditText
-        android:id="@+id/etHargaBarang"
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/marginElementEdittext"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Harga Barang"
-        android:inputType="numberSigned" />
+        android:layout_marginTop="@dimen/marginElementEdittext"
+        android:textSize="@dimen/titleColumSize"
+        android:text="Harga Jual" />
 
     <EditText
-        android:id="@+id/etHargaBeli"
+        android:id="@+id/etHargaJual"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Harga Jual"
+        android:inputType="numberSigned"
+        android:text="0"
+        />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginElementEdittext"
-        android:hint="Harga Beli"
-        android:inputType="numberSigned" />
+        android:text="Modal"
+        android:textSize="@dimen/titleColumSize" />
+
+    <EditText
+        android:id="@+id/etModal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+
+        android:hint="modal"
+        android:inputType="numberSigned"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Diperbaharui"
+        android:textSize="@dimen/titleColumSize" />
+
+    <EditText
+        android:id="@+id/etTanggal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Tanggal"
+        android:inputType="textPersonName"
+        android:focusable="false"
+        android:longClickable="false"/>
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="87dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
         android:onClick="addBarang"
         android:text="simpan" />
+
+    <Button
+        android:id="@+id/tblHapus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hapus" />
+
 </LinearLayout>

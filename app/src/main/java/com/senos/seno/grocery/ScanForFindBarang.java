@@ -13,10 +13,10 @@ import android.widget.Toast;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
-public class Main2Activity extends AppCompatActivity implements ZBarScannerView.ResultHandler{
+public class ScanForFindBarang extends AppCompatActivity implements ZBarScannerView.ResultHandler{
     private ZBarScannerView mScannerView;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
-
+    private String wkwk;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +25,6 @@ public class Main2Activity extends AppCompatActivity implements ZBarScannerView.
         mScannerView = new ZBarScannerView(this);
         ViewGroup contentpanel = (ViewGroup)findViewById(R.id.contentPanel);
         contentpanel.addView(mScannerView);
-
-
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -59,7 +57,7 @@ public class Main2Activity extends AppCompatActivity implements ZBarScannerView.
     @Override
     protected void onResume() {
         super.onResume();
-        mScannerView.setResultHandler(Main2Activity.this);
+        mScannerView.setResultHandler(ScanForFindBarang.this);
         mScannerView.startCamera();
     }
 
@@ -71,8 +69,10 @@ public class Main2Activity extends AppCompatActivity implements ZBarScannerView.
 
     @Override
     public void handleResult(Result result) {
-        Intent inten = new Intent(this,MainActivity.class);
-        inten.putExtra("barcode",result.getContents());
-        startActivity(inten);
+            Intent inten ;
+            inten = new Intent(this,MainActivity.class);
+            inten.putExtra("barcode",result.getContents());
+            startActivity(inten);
+            finish();
     }
 }

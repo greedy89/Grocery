@@ -22,7 +22,7 @@ public class AdapterListBarang extends RecyclerView.Adapter<RecyclerView.ViewHol
     private NumberFormat numberFormat;
     private Locale localeID =new Locale("in","ID");
 
-    private AdapterListBarang.OnItemClickListener mOnItemClickListener;
+    AdapterListBarang.OnItemClickListener mOnItemClickListener;
 
     public AdapterListBarang(Context context , List<Grocery> items){
         this.context = context;
@@ -39,12 +39,13 @@ public class AdapterListBarang extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public class originalViewHolder extends RecyclerView.ViewHolder{
         public TextView codeBarcode, namaBarang, hargaJual;
-
+        public View layoutparent;
         public originalViewHolder(View itemView) {
             super(itemView);
             codeBarcode = (TextView)itemView.findViewById(R.id.adpTxtcodebarcode);
             namaBarang = (TextView)itemView.findViewById(R.id.adpTxtnamaBarang);
             hargaJual = (TextView) itemView.findViewById(R.id.adpTxtharga);
+            layoutparent = itemView.findViewById(R.id.layoutParent);
         }
     }
 
@@ -59,14 +60,31 @@ public class AdapterListBarang extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
             if(holder instanceof originalViewHolder){
                 originalViewHolder view = (originalViewHolder) holder;
                 Grocery grocery = items.get(position);
-                view.codeBarcode.setText(grocery.getCodebarcode());
+                view.codeBarcode.setText( grocery.getCodebarcode());
                 view.namaBarang.setText(grocery.getNamabarang());
                 numberFormat = NumberFormat.getCurrencyInstance(localeID);
-                view.hargaJual.setText(numberFormat.format(Double.valueOf(grocery.getHargabeli())));
+                try{
+                    if(grocery.getModal()!=null){
+                        view.hargaJual.setText(numberFormat.format(Integer.valueOf(grocery.getHargajual())));
+                    }else{
+                        view.hargaJual.setText("Rp0");
+                    }
+
+                }catch (Exception e){
+
+                }
+                view.layoutparent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (mOnItemClickListener != null) {
+                            mOnItemClickListener.onItemClick(view, items.get(position), position);
+                        }
+                    }
+                });
 
             }
     }

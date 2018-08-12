@@ -2,7 +2,6 @@
 package com.senos.seno.grocery.model;
 
 import java.io.Serializable;
-import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
@@ -12,9 +11,18 @@ import com.google.gson.annotations.SerializedName;
 public class Data implements Serializable, Parcelable
 {
 
-    @SerializedName("grocery")
+    @SerializedName("status")
     @Expose
-    private List<Grocery> grocery = null;
+    private Boolean status;
+    @SerializedName("message")
+    @Expose
+    private String message;
+    @SerializedName("data")
+    @Expose
+    private Data_ data;
+    @SerializedName("total")
+    @Expose
+    private Integer total;
     public final static Parcelable.Creator<Data> CREATOR = new Creator<Data>() {
 
 
@@ -31,25 +39,55 @@ public class Data implements Serializable, Parcelable
 
     }
     ;
-    private final static long serialVersionUID = -8597494446708650559L;
+    private final static long serialVersionUID = -7899035283990982286L;
 
     protected Data(Parcel in) {
-        in.readList(this.grocery, (com.senos.seno.grocery.model.Grocery.class.getClassLoader()));
+        this.status = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+        this.message = ((String) in.readValue((String.class.getClassLoader())));
+        this.data = ((Data_) in.readValue((Data_.class.getClassLoader())));
+        this.total = ((Integer) in.readValue((Integer.class.getClassLoader())));
     }
 
     public Data() {
     }
 
-    public List<Grocery> getGrocery() {
-        return grocery;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setGrocery(List<Grocery> grocery) {
-        this.grocery = grocery;
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Data_ getData() {
+        return data;
+    }
+
+    public void setData(Data_ data) {
+        this.data = data;
+    }
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeList(grocery);
+        dest.writeValue(status);
+        dest.writeValue(message);
+        dest.writeValue(data);
+        dest.writeValue(total);
     }
 
     public int describeContents() {

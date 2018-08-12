@@ -20,12 +20,18 @@ public class Grocery implements Serializable, Parcelable
     @SerializedName("namabarang")
     @Expose
     private String namabarang;
-    @SerializedName("hargabarang")
+    @SerializedName("hargajual")
     @Expose
-    private String hargabarang;
-    @SerializedName("hargabeli")
+    private String hargajual;
+    @SerializedName("modal")
     @Expose
-    private String hargabeli;
+    private String modal;
+    @SerializedName("tanggal")
+    @Expose
+    private String tanggal;
+    @SerializedName("status")
+    @Expose
+    private String status;
     public final static Parcelable.Creator<Grocery> CREATOR = new Creator<Grocery>() {
 
 
@@ -42,14 +48,16 @@ public class Grocery implements Serializable, Parcelable
 
     }
     ;
-    private final static long serialVersionUID = -882527037861972779L;
+    private final static long serialVersionUID = -2262074399793785271L;
 
     protected Grocery(Parcel in) {
         this.id = ((String) in.readValue((String.class.getClassLoader())));
         this.codebarcode = ((String) in.readValue((String.class.getClassLoader())));
         this.namabarang = ((String) in.readValue((String.class.getClassLoader())));
-        this.hargabarang = ((String) in.readValue((String.class.getClassLoader())));
-        this.hargabeli = ((String) in.readValue((String.class.getClassLoader())));
+        this.hargajual = ((String) in.readValue((String.class.getClassLoader())));
+        this.modal = ((String) in.readValue((String.class.getClassLoader())));
+        this.tanggal = ((String) in.readValue((String.class.getClassLoader())));
+        this.status = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public Grocery() {
@@ -79,28 +87,46 @@ public class Grocery implements Serializable, Parcelable
         this.namabarang = namabarang;
     }
 
-    public String getHargabarang() {
-        return hargabarang;
+    public String getHargajual() {
+        return hargajual;
     }
 
-    public void setHargabarang(String hargabarang) {
-        this.hargabarang = hargabarang;
+    public void setHargajual(String hargajual) {
+        this.hargajual = hargajual;
     }
 
-    public String getHargabeli() {
-        return hargabeli;
+    public String getModal() {
+        return modal;
     }
 
-    public void setHargabeli(String hargabeli) {
-        this.hargabeli = hargabeli;
+    public void setModal(String modal) {
+        this.modal = modal;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
         dest.writeValue(codebarcode);
         dest.writeValue(namabarang);
-        dest.writeValue(hargabarang);
-        dest.writeValue(hargabeli);
+        dest.writeValue(hargajual);
+        dest.writeValue(modal);
+        dest.writeValue(tanggal);
+        dest.writeValue(status);
     }
 
     public int describeContents() {
