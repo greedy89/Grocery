@@ -7,30 +7,43 @@ import android.os.Parcelable;
 import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
+import com.senos.seno.grocery.ApplicationGrocery;
 
-public class Grocery implements Serializable, Parcelable
+@Table(database = ApplicationGrocery.class)
+public class Grocery extends BaseModel implements Serializable, Parcelable
 {
 
     @SerializedName("id")
     @Expose
+    @PrimaryKey
     private String id;
     @SerializedName("codebarcode")
     @Expose
+    @Column
     private String codebarcode;
     @SerializedName("namabarang")
     @Expose
+    @Column
     private String namabarang;
     @SerializedName("hargajual")
     @Expose
+    @Column
     private String hargajual;
     @SerializedName("modal")
     @Expose
+    @Column
     private String modal;
     @SerializedName("tanggal")
     @Expose
+    @Column
     private String tanggal;
     @SerializedName("status")
     @Expose
+    @Column
     private String status;
     public final static Parcelable.Creator<Grocery> CREATOR = new Creator<Grocery>() {
 

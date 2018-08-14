@@ -1,4 +1,4 @@
-package com.senos.seno.grocery;
+package com.senos.seno.grocery.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.senos.seno.grocery.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
