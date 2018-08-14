@@ -72,7 +72,7 @@ public class ScanForFindBarang extends AppCompatActivity implements ZBarScannerV
     @Override
     public void handleResult(Result result) {
             Intent inten ;
-            inten = new Intent(this,MainActivity.class);
+            inten = new Intent(this,HomeActivity.class);
             inten.putExtra("barcode",result.getContents());
             startActivity(inten);
             finish();

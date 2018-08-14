@@ -15,24 +15,48 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.senos.seno.grocery.R;
+import com.senos.seno.grocery.model.Grocery;
+import com.senos.seno.grocery.model.Grocery_Table;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    TextView a;
-    Calendar cal;
+    private NumberFormat numberFormat;
+    private Locale localeID = new Locale("in", "ID");
+
+    //    TextView a;
+//    Calendar cal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        a  = (TextView) findViewById(R.id.textView8);
-        cal = Calendar.getInstance();
-        a.setText(cal.getTime().toString());
+        String a = getIntent().getStringExtra("barcode");
+        TextView txCodebarcode = (TextView) findViewById(R.id.txtHasilScan);
+        TextView txNamabarang = (TextView) findViewById(R.id.txNamabarang);
+        TextView txHargebarang = (TextView) findViewById(R.id.txHarga);
+        if (a != null) {
+            Grocery result = SQLite.select().from(Grocery.class).where(Grocery_Table.codebarcode.like(a)).querySingle();
+            txCodebarcode.setText(result.getCodebarcode());
+            txNamabarang.setText(result.getNamabarang());
+            numberFormat = NumberFormat.getCurrencyInstance(localeID);
+            try {
+                txHargebarang.setText(numberFormat.format(Integer.valueOf(result.getHargajual())));
+            } catch (Exception e) {
+
+            }
+
+        }
+//        a  = (TextView) findViewById(R.id.textView8);
+//        cal = Calendar.getInstance();
+//        a.setText(cal.getTime().toString());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -92,20 +116,20 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent inten = new Intent(HomeActivity.this,ScanForFindBarang.class);
+            Intent inten = new Intent(HomeActivity.this, ScanForFindBarang.class);
             startActivity(inten);
         } else if (id == R.id.nav_gallery) {
-            Intent inten  = new Intent (HomeActivity.this,ListBarang.class);
+            Intent inten = new Intent(HomeActivity.this, ListBarang.class);
             startActivity(inten);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-            Intent inten = new Intent(HomeActivity.this,TambahBarang.class);
+            Intent inten = new Intent(HomeActivity.this, TambahBarang.class);
             startActivity(inten);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-            Intent inten = new Intent(HomeActivity.this,MainActivity.class);
+            Intent inten = new Intent(HomeActivity.this, MainActivity.class);
             startActivity(inten);
         }
 
@@ -114,8 +138,14 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
-    public void tblDateFormat(View view) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        a.setText(sdf.format(cal.getTime()));
+    public void scanBarcode(View view) {
+        Intent n = new Intent (HomeActivity.this,ScanForFindBarang.class);
+        n.putExtra("flag","cariBarang");
+        startActivity(n);
     }
+
+//    public void tblDateFormat(View view) {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        a.setText(sdf.format(cal.getTime()));
+//    }
 }
