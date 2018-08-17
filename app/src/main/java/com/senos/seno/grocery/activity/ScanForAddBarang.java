@@ -1,4 +1,4 @@
-package com.senos.seno.grocery;
+package com.senos.seno.grocery.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

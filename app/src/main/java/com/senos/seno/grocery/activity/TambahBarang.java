@@ -1,4 +1,4 @@
-package com.senos.seno.grocery;
+package com.senos.seno.grocery.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.senos.seno.grocery.R;
 import com.senos.seno.grocery.model.Grocery;
 import com.senos.seno.grocery.model.ReturnValue;
 import com.senos.seno.grocery.service.ApiClient;

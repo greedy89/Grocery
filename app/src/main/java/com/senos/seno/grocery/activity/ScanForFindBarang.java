@@ -1,4 +1,4 @@
-package com.senos.seno.grocery;
+package com.senos.seno.grocery.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.senos.seno.grocery.R;
 
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
@@ -70,7 +72,7 @@ public class ScanForFindBarang extends AppCompatActivity implements ZBarScannerV
     @Override
     public void handleResult(Result result) {
             Intent inten ;
-            inten = new Intent(this,MainActivity.class);
+            inten = new Intent(this,HomeActivity.class);
             inten.putExtra("barcode",result.getContents());
             startActivity(inten);
             finish();
