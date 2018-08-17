@@ -20,6 +20,7 @@ import com.senos.seno.grocery.R;
 import com.senos.seno.grocery.model.Grocery;
 import com.senos.seno.grocery.model.Grocery_Table;
 
+
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,14 +42,14 @@ public class HomeActivity extends AppCompatActivity
         String a = getIntent().getStringExtra("barcode");
         TextView txCodebarcode = (TextView) findViewById(R.id.txtHasilScan);
         TextView txNamabarang = (TextView) findViewById(R.id.txNamabarang);
-        TextView txHargebarang = (TextView) findViewById(R.id.txHarga);
+        TextView txhargaBarang = (TextView) findViewById(R.id.txHarga);
         if (a != null) {
             Grocery result = SQLite.select().from(Grocery.class).where(Grocery_Table.codebarcode.like(a)).querySingle();
             txCodebarcode.setText(result.getCodebarcode());
             txNamabarang.setText(result.getNamabarang());
             numberFormat = NumberFormat.getCurrencyInstance(localeID);
             try {
-                txHargebarang.setText(numberFormat.format(Integer.valueOf(result.getHargajual())));
+                txhargaBarang.setText(numberFormat.format(Integer.valueOf(result.getHargajual())));
             } catch (Exception e) {
 
             }
