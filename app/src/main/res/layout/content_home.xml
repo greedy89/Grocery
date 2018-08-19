@@ -30,7 +30,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:visibility="visible">
 
         <Button
             android:id="@+id/btnScanBarcode"
@@ -104,17 +105,70 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="41dp"
             android:ems="10"
-            android:visibility="gone"
             android:hint="cari nama barang"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:visibility="gone"
             android:layout_alignTop="@+id/etCari"
-            android:text="Cari" />
+            android:text="Cari"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/tblAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="105dp"
+            android:onClick="runAlarm"
+            android:text="select time"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/txtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="176dp"
+            android:text="d"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/tblSetAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="56dp"
+            android:onClick="startalarm"
+            android:text="set alarm"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/tblStop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="132dp"
+            android:text="stop schedule"
+            android:onClick="stopSchedule"/>
+
+        <Button
+            android:id="@+id/tblStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="181dp"
+            android:text="Start schedule"
+            android:onClick="startSchedule"/>
     </RelativeLayout>
+
 </FrameLayout>
