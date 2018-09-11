@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +19,11 @@ import com.senos.seno.grocery.model.ReturnValue;
 import com.senos.seno.grocery.service.ApiClient;
 import com.senos.seno.grocery.service.ApiInterfaces;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -50,6 +55,8 @@ public class TambahBarang extends AppCompatActivity {
         tanggal = (EditText) findViewById(R.id.etTanggal);
         cal = Calendar.getInstance();
         tanggal.setText(sdf.format(cal.getTime()));
+        hrgJual.addTextChangedListener(onTextChangedListener(hrgJual));
+        modal.addTextChangedListener(onTextChangedListener(modal));
         tbladdBarcode = (Button) findViewById(R.id.tblAddBarcode);
         tbladdBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,12 +148,21 @@ public class TambahBarang extends AppCompatActivity {
     }
 
     private void tambahbarang() {
+        String a = hrgJual.getText().toString();
+        String b = modal.getText().toString();
+
+        if(a.contains(",")){
+            a.replaceAll(",","");
+        }
+        if(b.contains(",")){
+            b.replaceAll(",","");
+        }
         ApiInterfaces interfaces = ApiClient.getClient().create(ApiInterfaces.class);
         Call<ReturnValue> barang = interfaces.tambahBarang(
                 toRequestBody(codeBarcode.getText().toString()),
                 toRequestBody(nmBarang.getText().toString()),
-                toRequestBody(hrgJual.getText().toString()),
-                toRequestBody(modal.getText().toString()),
+                toRequestBody(a),
+                toRequestBody(b),
                 toRequestBody(tanggalData),
                 toRequestBody("")
         );
@@ -171,13 +187,22 @@ public class TambahBarang extends AppCompatActivity {
     }
 
     private void updateBarang() {
+        String a = hrgJual.getText().toString();
+        String b = modal.getText().toString();
+
+        if(a.contains(",")){
+            a.replaceAll(",","");
+        }
+        if(b.contains(",")){
+            b.replaceAll(",","");
+        }
         ApiInterfaces interfaces = ApiClient.getClient().create(ApiInterfaces.class);
         Call<ReturnValue> barang2 = interfaces.updateBarang(
                 toRequestBody(id),
                 toRequestBody(codeBarcode.getText().toString()),
                 toRequestBody(nmBarang.getText().toString()),
-                toRequestBody(hrgJual.getText().toString()),
-                toRequestBody(modal.getText().toString()),
+                toRequestBody(a),
+                toRequestBody(b),
                 toRequestBody(tanggalData),
                 toRequestBody("")
         );
@@ -256,6 +281,47 @@ public class TambahBarang extends AppCompatActivity {
         } else {
 
         }
+    }
+
+    private TextWatcher onTextChangedListener(final EditText r) {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                r.removeTextChangedListener(this);
+
+                try {
+                    String originalString = s.toString();
+
+                    Long longval;
+                    if (originalString.contains(",")) {
+                        originalString = originalString.replaceAll(",", "");
+                    }
+                    longval = Long.parseLong(originalString);
+
+                    DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+                    formatter.applyPattern("#,###,###,###");
+                    String formattedString = formatter.format(longval);
+
+                    //setting text after format to EditText
+                    r.setText(formattedString);
+                    r.setSelection(r.getText().length());
+                } catch (NumberFormatException nfe) {
+                    nfe.printStackTrace();
+                }
+
+                r.addTextChangedListener(this);
+            }
+        };
     }
 
 }

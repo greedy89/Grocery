@@ -1,10 +1,12 @@
 package com.senos.seno.grocery.activity;
 
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
@@ -62,15 +64,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         txtime = (TextView)findViewById(R.id.txtime);
         if (a != null) {
             Grocery result = SQLite.select().from(Grocery.class).where(Grocery_Table.codebarcode.like(a)).querySingle();
-            txCodebarcode.setText(result.getCodebarcode());
-            txNamabarang.setText(result.getNamabarang());
-            numberFormat = NumberFormat.getCurrencyInstance(localeID);
-            try {
-                txhargaBarang.setText(numberFormat.format(Integer.valueOf(result.getHargajual())));
-            } catch (Exception e) {
+            if(result!=null){
+                txCodebarcode.setText(result.getCodebarcode());
+                txNamabarang.setText(result.getNamabarang());
+                numberFormat = NumberFormat.getCurrencyInstance(localeID);
+                try {
+                    txhargaBarang.setText(numberFormat.format(Integer.valueOf(result.getHargajual())));
+                } catch (Exception e) {
+
+                }
+            }else{
+                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setTitle("Information");
+                alertDialogBuilder.setMessage("Data produk ini belum terdaftar");
+                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                alertDialogBuilder.setCancelable(false);
+                AlertDialog alert = alertDialogBuilder.create();
+                alert.show();
 
             }
-
         }
 //        a  = (TextView) findViewById(R.id.textView8);
 //        cal = Calendar.getInstance();
